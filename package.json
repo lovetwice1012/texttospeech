@@ -10,8 +10,8 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "build-tools": "^8.0.0",
-    "cmake": "0.0.4",
+    "speaker": "latest",
+    "node-openjtalk": "latest",
     "express": "^4.17.1"
   },
   "engines": {
