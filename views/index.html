@@ -1,52 +1,39 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cool thing made with Glitch">
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>音声認識</title>
+</head>
+<body>
+    <h2>音声認識</h2>
+    <button id="btn">start</button>
+    <div id="content"></div>
 
-    <title>Welcome to Glitch!</title>
+<script>
+//ここに音声認識の処理を書いていく
+const speech = new webkitSpeechRecognition();
+speech.lang = 'ja-JP';
 
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
+//---------------追記---------------//
+const btn = document.getElementById('btn');
+const content = document.getElementById('content');
 
-    <!-- import the webpage's client-side javascript file -->
-    <script src="/script.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <h1>A Dream of the Future</h1>
-    </header>
+btn.addEventListener('click' , function() {
+    // 音声認識をスタート
+    speech.start();
+});
 
-    <main>
-      <h2>Oh hi,</h2>
+speech.addEventListener('result' , function(e) {
+   // 音声認識で取得した情報を、コンソール画面に表示
+   console.log(e);
+//---------------追記---------------//
+    // 音声認識で取得した情報を、HTMLに表示
+    const text = e.results[0][0].transcript;
+    content.innerText = text;
+    //--------------------------------//
+});
+//--------------------------------//
 
-      <p>Tell me your hopes and dreams:</p>
-
-      <form>
-        <label>
-          New Dream
-          <input name="dream" type="text" maxlength="100" required placeholder="Dreams!">
-        </label>
-        <button type="submit" id="submit-dream">Add Dream</button>
-      </form>
-
-      <section class="dreams">
-        <ul id="dreams">
-          <em>loading dreams&hellip;</em>
-        </ul>
-      </section>
-    </main>
-
-    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js" defer></script>
-  </body>
-</html>
+</script>
+<body>
+<html>
